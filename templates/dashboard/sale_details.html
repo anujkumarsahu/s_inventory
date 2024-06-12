@@ -1,0 +1,45 @@
+{% extends "partials/base.html" %}
+{% block title %}Sale Details{% endblock title %}
+{% block content %}
+<div class="container mt-3 shadow-lg">
+    <h3>Sale Details</h3>
+    <hr>
+    
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Invoice</th> 
+            <th>date</th>  
+            <th>Customer</th>    
+            <th>Contact no</th>
+            <th>Details</th>
+            
+            <th>Total Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sale in data %}
+            <tr>
+                <td>{{ sale.invoice_no }}</td>
+                <td>{{ sale.datetime }}</td>
+                <td>{{ sale.customer }}</td>
+                <td>{{ sale.contact_no }}</td>
+                
+                <td>
+                    <ul>
+                        <li>  item   -   Quantity  -   Price - anount</li>
+                         {% for saledetail in sale.saledetail_set.all %}	
+                            <li>{{ saledetail.item }} - {{ saledetail.quantity}} - {{ saledetail.price }} - {{ saledetail.amount }}</li>
+                            
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>{{ sale.total_amount}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    </div>
+</div>
+{% endblock content %}

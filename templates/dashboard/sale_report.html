@@ -1,0 +1,54 @@
+{% extends "partials/base.html" %}
+{% block title %}Sale Report{% endblock title %}
+{% block content %}
+
+        <div class="container mt-5 shadow">
+            <h3 class="mt-5  mx-5">Sale Report Date wise</h3>
+            <hr>
+            <form method="POST" class="as-table mx-4 p-4" id="item-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class=" btn btn-outline-primary  "
+                 value="Search">
+                </form>
+            <div class="container-fluid">
+                <div class="row">
+                     <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sale ID</th>
+                                <th>Invoice</th>
+                                <th>Sale Date</th>
+                                <th>Customer</th>
+                                <th>Contact No</th>
+                                 <th>Details</th> 
+                                <th>Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sale in sbetween %}
+                                <tr>
+                                    <td>{{ sale.id }}</td>
+                                    <td>{{ sale.invoice_no }}</td>
+                                    <td>{{ sale.datetime }}</td>
+                                    <td>{{ sale.customer }}</td>
+                                    <td>{{ sale.contact_no }}</td>
+                                     <td>
+                                        <ul>
+                                            <li class="text-block">   item   -   Quantity  -   Price - anount</li>
+                                            {% for saledetail in sale.saledetail_set.all %}
+                                                <li>{{ saledetail.item }} - {{ saledetail.quantity}} - {{ saledetail.price }} - {{ saledetail.amount }}</li>
+                                                
+                                        {% endfor %}
+                                        </ul>
+                                    </td> 
+                                    <td>{{ sale.total_amount}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+{% endblock content %}

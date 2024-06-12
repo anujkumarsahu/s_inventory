@@ -1,0 +1,25 @@
+
+{% extends "partials/base.html" %}
+{% block title %} Edit Suppliers{% endblock title %}
+{% block content %}
+
+<div class="container-fruid pt-2 mx-lg-5">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group shadow-lg">
+        
+                <form method="post" class="as-table mx-4 p-4" id="item-form" style="display: visible;">
+                <h2> Edit Supplier</h2>
+                <hr>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class=" btn btn-outline-primary form-control "
+                 value="Update">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+{% endblock content %}

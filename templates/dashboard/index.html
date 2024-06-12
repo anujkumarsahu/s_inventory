@@ -1,0 +1,31 @@
+{% extends "partials/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+
+<div class="container-fluid  " style="background: url('static/image/bg_image.png') ">   
+    <div class="row">
+        <div class="col-md-12 mb-auto" >
+            
+            <div class="col-md-8 offset-md-2 info">
+                 <h1 class="text-center my-5 text-danger">SPPAROW</h1>
+                    <h2 class="text-center text-white p-3">
+                        Welcome To Our Inventry System </h2>
+                        <p class="text-center text-white m-2">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, culpa? Sed in unde soluta magnam incidunt aperiam officiis nemo architecto vero! Minus natus error ducimus, 
+                            ipsam accusamus provident veritatis at?consectetur adipisicing elit. Eos, culpa? Sed in unde soluta magnam incidunt aperiam officiis nemo architecto vero! Minus natus error ducimus, 
+                            ipsam accusamus provident veritatis at?
+                        
+                        </p>
+                   
+                    <div class="col-md-6 offset-md-3 info my-5"><a href="{% url 'items' %}" 
+                        class="btn btn-md text-center btn-danger offset-md-3 mx-6 p-3 mb-5">GET STARTED</a></div>
+                </div>
+            </div>
+        </div> 
+	</div>
+    <footer class="container-fluid bg-dark text-center p-3 ">
+        <small class="text-white">Copyright &copy; 2023 || Designed By Anuj kumar sahu || </small>
+    </footer>
+   
+{% endblock content %}

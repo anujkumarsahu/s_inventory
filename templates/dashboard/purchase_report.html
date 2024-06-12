@@ -1,0 +1,50 @@
+{% extends "partials/base.html" %}
+{% block title %}Purchase Report{% endblock title %}
+{% block content %}
+
+        <div class="container mt-5 shadow">
+            <h3 class="mt-5  mx-5">Purchase Report Date wise</h3>
+            <hr>
+            <form method="POST" class="as-table mx-4 p-4" id="item-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class=" btn btn-outline-primary  "
+                 value="Search">
+                </form>
+            <div class="container-fluid">
+                <div class="row">
+          
+                     <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Purchase ID</th>
+                                <th>Purchase Date</th>
+                                <th>Details</th>
+                                <th>Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for purchase in pbetween %}
+                                <tr>
+                                    <td>{{ purchase.id }}</td>
+                                    <td>{{ purchase.datetime }}</td>
+                                    <td>
+                                        <ul>
+                                            <li>  item   -   Quantity  -   Price - anount</li>
+                                            {% for purchasedetail in purchase.purchasedetails_set.all %}
+                                                <li> {{ purchasedetail.item }} - {{ purchasedetail.quantity}} - {{ purchasedetail.price }} - {{ purchasedetail.amount }}</li>
+                                                
+                                        {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>{{ purchase.total_amount}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+{% endblock content %}
